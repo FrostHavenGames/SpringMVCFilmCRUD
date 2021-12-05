@@ -3,17 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" content="text/html; charset=UTF-8">
-<title>Find By Film Id</title>
+<meta charset="UTF-8">
+<title>Find By Film Keyword</title>
 </head>
 <body>
-
-<h1>Find By Film Id</h1>
+<h1>Find By Film Keyword</h1>
 
 <br>
-<form action=findById.do method="GET">
- 	FilmId:
- 	<input type="text" name="filmId"/>
+<form action=findByKeyword.do method="GET">
+ 	FilmKeyword:
+ 	<input type="text" name="filmkeyword"/>
  	<input type="submit" value="Get Film Data " />
  </form>
 </body>

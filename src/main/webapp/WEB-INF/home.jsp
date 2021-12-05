@@ -3,23 +3,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" content="text/html; charset=UTF-8">
 <title>Film Site</title>
 </head>
 <body>
 
 <h1>Films R US!</h1>
 ${TEST}
+<br> 
+<a href="findById">Find Film By Film Id</a>
 <br>
-<a href="findById.do">Find Film By Film Id</a>
+<a href="findByKeyword">Find Film By Film Keyword or Description</a>
 <br>
-<a href="findByKeyword.do">Find Film By Film Keyword or Description</a>
+<a href="addFilm">You can add your films by clicking this link</a>
 <br>
-<a href="addFilm.do">You can add your films by clicking this link</a>
+<a href="updateFilm">You can update your films by clicking this link</a>
 <br>
-<a href="updateFilm.do">You can update your films by clicking this link</a>
-<br>
-<a href="deleteFilm.do">You can delete your films by clicking this link</a>
+<a href="deleteFilm">You can delete your films by clicking this link</a>
 <br>
 
 </body>
