@@ -21,7 +21,6 @@ public class Film {
 	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeature,
 			String categoryName, List<Actor> actors) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -145,7 +144,6 @@ public class Film {
 	}
 	
 	public Film() {
-		super();
 	}
 	
 	

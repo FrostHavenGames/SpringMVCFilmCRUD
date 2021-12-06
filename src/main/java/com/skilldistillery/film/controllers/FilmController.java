@@ -25,7 +25,7 @@ public class FilmController {
 		model.addAttribute("TEST", "Hello, Spring MVC!");
 		return "home";
 	}
-	@RequestMapping({  "findById"})
+	@RequestMapping("findById")
 	public String findbyId(Model model) {
 		return "findById";
 	}
@@ -58,13 +58,12 @@ public class FilmController {
 		return "addFilm";
 	}
 
-	@RequestMapping(path = "createNewFilm.do", params = "NewFilm", method = RequestMethod.POST)
-	public ModelAndView createANewFilm(@RequestParam("NewFilm") Film NewFilm) throws SQLException {
+	@RequestMapping(path = "createNewFilm.do", method = RequestMethod.POST)
+	public ModelAndView createANewFilm(Film NewFilm) throws SQLException {
 		ModelAndView mv = new ModelAndView();
 		Film film =  filmDao.createFilm(NewFilm) ;
-//		Film films = filmDao.findFilmById(film.getId());
 		mv.addObject("Film", film);
-		mv.setViewName("Result");
+		mv.setViewName("result");
 		return mv;
 	}
 	@RequestMapping({ "deleteFilm"})
@@ -76,20 +75,20 @@ public class FilmController {
 	public ModelAndView deleteAFilm(@RequestParam("deleteFilm") Film deFilml) throws SQLException {
 		ModelAndView mv = new ModelAndView();
 		filmDao.deleteFilm(deFilml);
-		mv.setViewName("Result");
+		mv.setViewName("result");
 		return mv;
 	}
 	
 	@RequestMapping({ "updateFilm"})
 	public String updateFilm(Model model) {
-		return "deleteFilm";
+		return "updateFilm";
 	}
 
-	@RequestMapping(path = "updateFilm.do", params = "updtaeAFilm", method = RequestMethod.POST)
-	public ModelAndView updateAFilm(@RequestParam("updtaeAFilm") Film updatedFilm) throws SQLException {
+	@RequestMapping(path = "updateFilm.do", params = "updateAFilm", method = RequestMethod.GET)
+	public ModelAndView updateAFilm(@RequestParam("updateAFilm") Film updatedFilm) throws SQLException {
 		ModelAndView mv = new ModelAndView();
 		filmDao.updateFilm(updatedFilm);
-		mv.setViewName("Result");
+		mv.setViewName("result");
 		return mv;
 	}
 

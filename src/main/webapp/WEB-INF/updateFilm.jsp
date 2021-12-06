@@ -12,7 +12,7 @@
 
 <br>
 <form action=updateFilm.do method="GET">
- 	give the film Id to delete:
+ 	give the film Id to update:
  	<input type="text" name="filmId"/>
  	<input type="submit" value="Update Film Data " />
  </form>

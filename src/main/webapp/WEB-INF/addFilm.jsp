@@ -14,25 +14,25 @@
  	Input Data to Create A New Film:
  	<br>
  	Film Title(String):
- 	<input type="text" name="Film Title"/><br>
+ 	<input type="text" name="title"/><br>
  	Film Description(String):
- 	<input type="text" name="Film Description"/><br>
+ 	<input type="text" name="description"/><br>
  	Film Release Year(Integer):
- 	<input type="text" name="Film Release Year"/><br>
+ 	<input type="text" name="releaseYear"/><br>
  	Film Language Id(Integer):
- 	<input type="text" name="Film Language Id"/><br>
+ 	<input type="text" name="languageId"/><br>
  	Film Rental Duration(Integer):
- 	<input type="text" name="Film Rental Duration"/><br>
+ 	<input type="text" name="rentalDuration"/><br>
  	Film Rental Rate(Double):
- 	<input type="text" name="Film Rental Rate"/><br>
+ 	<input type="text" name="rentalRate"/><br>
  	Film Length(Integer):
- 	<input type="text" name="Film Length"/><br>
+ 	<input type="text" name="length"/><br>
  	Film Replacement Cost(Double):
- 	<input type="text" name="Film Replacement Cost"/><br>
+ 	<input type="text" name="replacementCost"/><br>
  	Film Rating(String):
- 	<input type="text" name="Film Rating"/><br>
+ 	<input type="text" name="rating"/><br>
  	Film Special Feature(String):
- 	<input type="text" name="Film Special Feature"/><br>
+ 	<input type="text" name="specialFeature"/><br>
  	<input type="submit" value="Create a  Film" />
  </form>
 </body>
