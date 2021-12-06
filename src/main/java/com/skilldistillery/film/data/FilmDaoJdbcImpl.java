@@ -28,67 +28,68 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film findFilmById(int filmId) throws SQLException {
+	public Film findFilmById(int filmId) {
 		Film film = null;
 
-		Connection conn = DriverManager.getConnection(URL, user, pass);
-		String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, film.rental_duration, ";
-		sql += " film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features,"
-				+ "category.name " + " FROM film join film_category on"
-						+ " film.id = film_category.film_id"
-						+ " join category on category.id = film_category.category_id  WHERE film.id = ?";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, filmId);
-		ResultSet actorResult = stmt.executeQuery();
-		if (actorResult.next() && filmId > 0) {
-			film = new Film(); // Create the object
-			// Here is our mapping of query columns to our object fields:
-			film.setId(actorResult.getInt(1));
-			film.setTitle(actorResult.getString(2));
-			film.setDescription(actorResult.getString(3));
-			film.setReleaseYear(actorResult.getInt(4));
-			film.setLanguageId(actorResult.getInt(5));
-			film.setRentalDuration(actorResult.getInt(6));
-			film.setRentalRate(actorResult.getDouble(7));
-			film.setLength(actorResult.getInt(8));
-			film.setReplacementCost(actorResult.getDouble(9));
-			film.setRating(actorResult.getString(10));
-			film.setSpecialFeature(actorResult.getString(11));
-			film.setCategoryName(actorResult.getString(12));
-			film.setActors(findActorsByFilmId(filmId));
+		String sql = "SELECT * FROM film WHERE id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setInt(1, filmId);
+			ResultSet filmResult = statement.executeQuery();
 
+			if (filmResult.next()) {
+				String title = filmResult.getString("title");
+				String desc = filmResult.getString("description");
+				short releaseYear = filmResult.getShort("release_year");
+				int langId = filmResult.getInt("language_id");
+				int rentDur = filmResult.getInt("rental_duration");
+				double rate = filmResult.getDouble("rental_rate");
+				int length = filmResult.getInt("length");
+				double repCost = filmResult.getDouble("replacement_cost");
+				String rating = filmResult.getString("rating");
+				String features = filmResult.getString("special_features");
+				String category = filmResult.getString("special_features");
+				film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
+						features, category, findActorsByFilmId(filmId));
 
+			}
+
+			filmResult.close();
+			statement.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
 		}
 
 		return film;
 	}
 	
-	public List<Actor> findActorsByFilmId(int filmId) {
-		List<Actor> actor = new ArrayList<>();
+	
+	@Override
+	public List<Actor> findActorsByFilmId(int filmID) {
+		List<Actor> actors = new ArrayList<>();
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
-			String sql = "select actor.id , actor.first_name , actor.last_name,film.title  from actor "
-					+ "join film_actor on actor.id = film_actor.actor_id "
-					+ "join film on film_actor.film_id = film.id " + "where film.id =?";
+			String sql = "SELECT DISTINCT a.id, a.first_name, a.last_name FROM actor a JOIN film_actor fa on a.id = fa.actor_id JOIN film f on fa.film_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, filmId);
+			stmt.setInt(1, filmID);
+			ResultSet actorResult = stmt.executeQuery();
 
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				int Id = rs.getInt("actor.id");
-				String firstName = rs.getString("actor.first_name");
-				String lastName = rs.getString("actor.last_name");
-
-				Actor actors = new Actor(Id, firstName, lastName);
-				actor.add(actors);
+			while (actorResult.next()) {
+				actors.add(new Actor(actorResult.getInt("id"), actorResult.getString("first_name"),
+						actorResult.getString("last_name")));
 			}
-			rs.close();
+
+			actorResult.close();
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return actor;
+
+		return actors;
 	}
 	
 	
@@ -123,7 +124,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			film.setReplacementCost(actorResult.getDouble(9));
 			film.setRating(actorResult.getString(10));
 			film.setSpecialFeature(actorResult.getString(11));
-			film.setCategoryName(actorResult.getString(12));
 			film.setActors(findActorsByFilmId(film.getId()));
 			films.add(film);
 

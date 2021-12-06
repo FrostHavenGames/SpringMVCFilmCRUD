@@ -39,6 +39,9 @@
 					<br>
 				</c:forEach>
 			</ul>
+			<form action=deleteFilm.do method="GET">
+			 	<input type="submit" value="Delete Film Data" />
+			</form>
 		</c:when>
 		<c:otherwise>
 			<p>No film found,you have successfully deleted the film</p>

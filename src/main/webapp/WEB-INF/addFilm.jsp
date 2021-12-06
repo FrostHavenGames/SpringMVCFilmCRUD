@@ -33,7 +33,7 @@
  	<input type="text" name="rating"/><br>
  	Film Special Feature(String):
  	<input type="text" name="specialFeature"/><br>
- 	<input type="submit" value="Create a  Film" />
+ 	<input type="submit" value="Create a Film" />
  </form>
 </body>
 </html>

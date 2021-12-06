@@ -19,8 +19,8 @@ public class Film {
 	private List<Actor> actors;
 	
 	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialFeature,
-			String categoryName, List<Actor> actors) {
+			double rentalRate, int length, double replacementCost, String rating, String specialFeature, String categoryName,
+			 List<Actor> actors) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -32,7 +32,6 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeature = specialFeature;
-		this.categoryName = categoryName;
 		this.actors = actors;
 	}
 	public String getCategoryName() {
@@ -115,7 +114,7 @@ public class Film {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(actors, categoryName, description, id, languageId, length, rating, releaseYear,
+		return Objects.hash(actors, description, id, languageId, length, rating, releaseYear,
 				rentalDuration, rentalRate, replacementCost, specialFeature, title);
 	}
 	@Override
@@ -127,7 +126,7 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		return Objects.equals(actors, other.actors) && Objects.equals(categoryName, other.categoryName)
+		return Objects.equals(actors, other.actors)
 				&& Objects.equals(description, other.description) && id == other.id && languageId == other.languageId
 				&& length == other.length && Objects.equals(rating, other.rating) && releaseYear == other.releaseYear
 				&& rentalDuration == other.rentalDuration
@@ -140,7 +139,7 @@ public class Film {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeature=" + specialFeature + ", categoryName=" + categoryName + ", actors=" + actors + "]";
+				+ ", specialFeature=" + specialFeature + ", actors=" + actors + "]";
 	}
 	
 	public Film() {

@@ -26,6 +26,7 @@
 					<li>${x.replacementCost}</li>
 					<li>${x.specialFeature}</li>
 					<li>${x.categoryName}</li>
+					<
 					<br>
 				</c:forEach>
 			</ul>
