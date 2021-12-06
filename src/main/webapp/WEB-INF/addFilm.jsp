@@ -7,6 +7,7 @@
 <title>Create Your New Film</title>
 </head>
 <body>
+<%-- <%@ include file="result" %> --%>
 <h1>Create Your New Film</h1>
 <br>
 <form action=createNewFilm.do method="POST">
@@ -32,7 +33,7 @@
  	<input type="text" name="Film Rating"/><br>
  	Film Special Feature(String):
  	<input type="text" name="Film Special Feature"/><br>
- 	<input type="submit" value="Get Film Data " />
+ 	<input type="submit" value="Create a  Film" />
  </form>
 </body>
 </html>

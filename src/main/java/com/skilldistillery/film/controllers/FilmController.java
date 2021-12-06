@@ -61,7 +61,8 @@ public class FilmController {
 	@RequestMapping(path = "createNewFilm.do", params = "NewFilm", method = RequestMethod.POST)
 	public ModelAndView createANewFilm(@RequestParam("NewFilm") Film NewFilm) throws SQLException {
 		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.createFilm(NewFilm);
+		Film film =  filmDao.createFilm(NewFilm) ;
+//		Film films = filmDao.findFilmById(film.getId());
 		mv.addObject("Film", film);
 		mv.setViewName("Result");
 		return mv;
@@ -71,13 +72,25 @@ public class FilmController {
 		return "deleteFilm";
 	}
 
-	@RequestMapping(path = "deleteFilm.do", params = "deleteFilm", method = RequestMethod.POST)
-	public ModelAndView deleteAFilm(@RequestParam("deleteFilm") Film NewFilm) throws SQLException {
+	@RequestMapping(path = "deleteFilm.do", params = "deleteFilm", method = RequestMethod.GET)
+	public ModelAndView deleteAFilm(@RequestParam("deleteFilm") Film deFilml) throws SQLException {
 		ModelAndView mv = new ModelAndView();
-		filmDao.deleteFilm(NewFilm);
+		filmDao.deleteFilm(deFilml);
 		mv.setViewName("Result");
 		return mv;
 	}
 	
+	@RequestMapping({ "updateFilm"})
+	public String updateFilm(Model model) {
+		return "deleteFilm";
+	}
+
+	@RequestMapping(path = "updateFilm.do", params = "updtaeAFilm", method = RequestMethod.POST)
+	public ModelAndView updateAFilm(@RequestParam("updtaeAFilm") Film updatedFilm) throws SQLException {
+		ModelAndView mv = new ModelAndView();
+		filmDao.updateFilm(updatedFilm);
+		mv.setViewName("Result");
+		return mv;
+	}
 
 }
